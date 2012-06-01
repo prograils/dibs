@@ -5,7 +5,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Maciej Litwiniuk"]
   gem.email         = ["maciej@litwiniuk.net"]
   gem.description   = %q{DIBS payment gateway library}
-  gem.summary       = %q{This gem is a wrapper for DIBS payment API.}
+  gem.summary       = %q{DIBS payment API wrapper for Ruby}
   gem.homepage      = "https://github.com/prograils/dibs"
 
   gem.files         = `git ls-files`.split($\)
