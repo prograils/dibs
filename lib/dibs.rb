@@ -4,7 +4,8 @@ require 'net/http'
 require 'net/https'
 require 'digest/md5'
 require 'dibs/core_ext' unless Object.instance_methods.member?('to_query')
-require 'results'
+require 'results.rb'
+require 'errors.rb'
 module Dibs
   class Dibs
     @@server = "https://payment.architrade.com"
@@ -24,7 +25,7 @@ module Dibs
         :orderId=>'',
         :test=>false
       }.merge(opts)
-      
+      opts.symbolize_keys!
       check_for_missing_parameter opts, %w{ merchant amount currency cardno expmon expyear cvc orderId }
       md5 = "#{@key1}merchant=#{@merchant}&orderid=#{opts[:orderId]}&currency=#{opts[:currency]}&amount=#{opts[:amount]}"
       opts[:md5key]=calculate_md5(md5)

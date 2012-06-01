@@ -10,4 +10,11 @@ class Hash
     require 'cgi' unless defined?(CGI) && defined?(CGI::escape)
     "#{CGI.escape(key.to_s)}=#{CGI.escape(self[key].to_s)}"
   end
+
+  def symbolize_keys!
+    keys.each do |key|
+      self[(key.to_sym rescue key) || key] = delete(key)
+    end
+    self
+  end
 end

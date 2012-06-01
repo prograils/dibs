@@ -19,5 +19,10 @@ describe Dibs do
       res = @dibs.authorize(@good_looking_data)
       res.accepted?.should == true
     end
+
+    it "should throw an exception" do
+      params = @good_looking_data.delete(:cardno)
+      expect { @dibs.authorize(@good_looking_data) }.should raise_error
+    end
   end
 end
