@@ -4,8 +4,8 @@ describe Dibs do
     before(:each) do
       @dibs = ::Dibs::Dibs.new(API_CONFIG['merchant'],API_CONFIG['key1'],API_CONFIG['key2'])
       @good_looking_data = {
-        :amount=>10000, 
-        :currency=>208, 
+        :amount=>10000, # 100
+        :currency=>208, # DDK
         :cardno=>'5019100000000000', 
         :expmon=>'06', 
         :expyear=>'24', 
