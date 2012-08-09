@@ -23,6 +23,7 @@ module Dibs
         :expyear=>'',
         :cvc=>'',
         :orderId=>'',
+        :textreply=>true,
         :test=>false
       }.merge(opts)
       opts.symbolize_keys!
@@ -43,16 +44,17 @@ module Dibs
         :merchant=>@merchant,
         :amount=>0,
         :transact=>'',
-        :orderid=>'',
+        :orderId=>'',
+        :textreply=>true,
         :test=>false,
         :force=>false
       }.merge(opts)
-      if opts[:amount].blank? or opts[:transact].blank? or order[:orderid].blank?
+      if opts[:amount].blank? or opts[:transact].blank? or opts[:orderId].blank?
         raise ::Dibs::Errors::ParameterMissingError
       end
       md5 = "#{@key1}merchant=#{@merchant}&orderid=#{opts[:orderId]}&transact=#{opts[:transact]}&amount=#{opts[:amount]}"
       opts[:md5key]=calculate_md5(md5)
-      endpoint = '/cgi-ssl/capture.cgi'
+      endpoint = '/cgi-bin/capture.cgi'
       res = do_http_post(opts, endpoint)
       ::Dibs::Results::Capture.new(res.body)
     end
