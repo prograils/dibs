@@ -3,7 +3,6 @@ require "dibs/version"
 require 'net/http'
 require 'net/https'
 require 'digest/md5'
-require 'dibs/core_ext' unless Object.instance_methods.member?('to_query')
 require 'results.rb'
 require 'errors.rb'
 module Dibs
