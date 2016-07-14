@@ -60,7 +60,11 @@ module Dibs
 
     private
       def do_http_post(opts, endpoint)
-        opts[:test] = 'yes' if opts[:test]
+        if opts[:test]
+          opts[:test] = 'yes'
+        else
+          opts.except!(:test)
+        end
         opts[:textreply] = 'yes'
         opts[:fullreply] = 'yes'
         opts[:postype] = 'ssl'
